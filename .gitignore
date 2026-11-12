@@ -1,0 +1,22 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+
+# Smarty compiled templates & cache
+front/temp/template/*.php
+front/temp/cache/*
+!front/temp/template/.gitkeep
+!front/temp/cache/.gitkeep
+
+# Runtime logs
+logs/**/*.logs
+!logs/**/.gitkeep
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
