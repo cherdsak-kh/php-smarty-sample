@@ -17,6 +17,7 @@ $db->charSet = "SET NAMES " . $core_db_charecter_set['charset'];
 $db->Execute("SET character_set_results=" . $core_db_charecter_set['charset']);
 $db->Execute("SET collation_connection=" . $core_db_charecter_set['collation']);
 $db->Execute("SET NAMES '" . $core_db_charecter_set['charset'] . "'");
+$db->Execute("SET sql_mode = ''");
 //$db->SetFetchMode(ADODB_FETCH_ASSOC);
 $db->cacheSecs = 3600 * 12;
 

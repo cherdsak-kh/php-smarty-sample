@@ -1,13 +1,12 @@
-<?
+<?php
 include("../weadmin/lib/session.php");
-	$url = 'upload/files/'.time()."_".$_FILES['upload']['name'];
-	$urlSite="/wwp-php-sample/ckeditor/";
+	$urlSite="/php-smarty-sample/ckeditor/";
 	// $urlSite="/ckeditor/";
 
 if($_SESSION[$valSiteManage . 'core_session_id']>=1){
 
  //extensive suitability check before doing anything with the file...
-    if (($_FILES['upload'] == "none") OR (empty($_FILES['upload']['name'])) )
+    if (!isset($_FILES['upload']) || $_FILES['upload'] == "none" || empty($_FILES['upload']['name']))
     {
        $message = "No file uploaded.";
     }
@@ -15,24 +14,27 @@ if($_SESSION[$valSiteManage . 'core_session_id']>=1){
     {
        $message = "The file is of zero length.";
     }
-    else if (($_FILES['upload']["type"] != "image/pjpeg") AND ($_FILES['upload']["type"] != "image/jpeg") AND ($_FILES['upload']["type"] != "image/png") AND ($_FILES['upload']["type"] != "image/gif"))
+    else
     {
-       $message = "The image must be in either GIF , JPG or PNG format. Please upload a JPG or PNG instead.";
-    }
-
-	else if (!is_uploaded_file($_FILES['upload']["tmp_name"]))
-    {
-       $message = "You may be attempting to hack our server. We're on to you; expect a knock on the door sometime soon.";
-    }
-    else {
-      $message = "";
-
-      $move =  move_uploaded_file($_FILES['upload']['tmp_name'], $url);
-      if(!$move)
-      {
-         $message = "Error moving uploaded file. Check the script is granted Read/Write/Modify permissions.";
-      }
-     $url = $urlSite.$url;
+       $fileExt = strtolower(pathinfo($_FILES['upload']['name'], PATHINFO_EXTENSION));
+       $allowedExts = array('jpg', 'jpeg', 'png', 'gif');
+       if (!in_array($fileExt, $allowedExts)) {
+          $message = "The image must be in either GIF , JPG or PNG format. Please upload a JPG or PNG instead.";
+       }
+       else if (!is_uploaded_file($_FILES['upload']["tmp_name"]))
+       {
+          $message = "You may be attempting to hack our server. We're on to you; expect a knock on the door sometime soon.";
+       }
+       else {
+          $message = "";
+          $url = 'upload/files/'.time()."_".preg_replace('/[^a-zA-Z0-9_\.-]/', '_', $_FILES['upload']['name']);
+          $move = move_uploaded_file($_FILES['upload']['tmp_name'], $url);
+          if(!$move)
+          {
+             $message = "Error moving uploaded file. Check the script is granted Read/Write/Modify permissions.";
+          }
+          $url = $urlSite.$url;
+       }
     }
 
 

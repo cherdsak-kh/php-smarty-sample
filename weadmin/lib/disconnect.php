@@ -1,1 +1,1 @@
-<? wewebDisconnect($coreLanguageSQL); ?>
+<?php wewebDisconnect($coreLanguageSQL); ?>

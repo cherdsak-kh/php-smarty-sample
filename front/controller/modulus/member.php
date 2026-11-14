@@ -28,7 +28,7 @@ class member {
         $list['actionfail'] = FALSE;
         $list['start'] = date("Y:m:d H:i:s");
         $list['exp'] = $this->generateExp();
-        $list['cookie_id'] = $_COOKIE['PHPSESSID'];
+        $list['cookie_id'] = isset($_COOKIE['PHPSESSID']) ? $_COOKIE['PHPSESSID'] : session_id();
         $list['member_info'] = FALSE;
         $list['url'] = _URL;
 
@@ -143,12 +143,16 @@ class member {
     }
 
     function saveCookie() {
-        $setPut = $_SESSION[_URL]['token'];
-        $tokenList = unserialize(decodeStr($_SESSION[_URL]["token"]));
-        $setToken = setcookie("token", $setPut, time() + ((60 * 60) * $this->token_cookie_timeout), "/", _URL, true);
+        if (headers_sent()) {
+            return;
+        }
+        $setPut = isset($_SESSION[_URL]['token']) ? $_SESSION[_URL]['token'] : '';
+        $tokenList = !empty($setPut) ? @unserialize(decodeStr($setPut)) : array();
+        $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+        $setToken = setcookie("token", $setPut, time() + ((60 * 60) * $this->token_cookie_timeout), "/", "", $isHttps, true);
 
         if (!empty($tokenList['member_info']['md_mem_email'])) {
-            $setEmailLast = setcookie("lastlogin", $tokenList['member_info']['md_mem_email'], time() + (86400 * 30));
+            $setEmailLast = setcookie("lastlogin", $tokenList['member_info']['md_mem_email'], time() + (86400 * 30), "/", "", $isHttps, true);
         }
     }
 

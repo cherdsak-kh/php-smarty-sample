@@ -47,17 +47,21 @@ switch ($modefunction) {
 
 ## config Sql ##
 $coreLanguageSQL = "mysqli";
-if ($_SERVER['HTTP_HOST'] == 'localhost:8080' || $_SERVER['HTTP_HOST'] == 'localhost') {
+$hostClean = isset($_SERVER['HTTP_HOST']) ? explode(':', $_SERVER['HTTP_HOST'])[0] : 'localhost';
+if ($hostClean == 'localhost' || str_ends_with($hostClean, '.localhost') || $hostClean == '127.0.0.1') {
     $_CORE_ENV = "DEV";
-}else{
+} else {
     $_CORE_ENV = "STAGING";
+}
+if (!isset($_ENV[$_CORE_ENV])) {
+    $_CORE_ENV = "DEV";
 }
 $_ENV = array(
     "DEV" => array(
         "hostname" => "DB",
-        "username" => "root",
-        "password" => "MYSQL_ROOT_PASSWORD",
-        "name" => "2024_dmsc",
+        "username" => "mysql_user",
+        "password" => "mysql_pws1598753",
+        "name" => "php_smarty_sample",
     ),
 );
 

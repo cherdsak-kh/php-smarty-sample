@@ -5,7 +5,7 @@
  Source Server Type    : MariaDB
  Source Server Version : 130002 (13.0.2-MariaDB-ubu2604)
  Source Host           : 127.0.0.1:9906
- Source Schema         : 2024_web_template
+ Source Schema         : php_smarty_sample
 
  Target Server Type    : MariaDB
  Target Server Version : 130002 (13.0.2-MariaDB-ubu2604)

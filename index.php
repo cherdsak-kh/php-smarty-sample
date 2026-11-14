@@ -1,5 +1,5 @@
 <?php
-$path_root = "/wwp-php-sample"; #ถ้า root อยู่ public
+$path_root = "/php-smarty-sample"; #ถ้า root อยู่ public
 // $path_root = "/mommy"; #ถ้า root ไม่ได้อยู่ public
 define("_http", "http");
 

@@ -1,4 +1,4 @@
-<?
+<?php
 $check_login_status = 1;
 include("../lib/session.php");
 include("../lib/config.php");
@@ -44,7 +44,7 @@ if ($recordMaster >= 1) {
  " . $core_tb_staff . "_username,
  " . $core_tb_staff . "_typemini,
  " . $core_tb_staff . "_usertype as usertype
- FROM " . $core_tb_staff . " WHERE binary " . $core_tb_staff . "_username='" . $inputUser . "'  AND " . $core_tb_staff . "_status !='Disable' ";
+ FROM " . $core_tb_staff . " WHERE binary " . $core_tb_staff . "_username='" . wewebEscape($coreLanguageSQL, $inputUser) . "'  AND " . $core_tb_staff . "_status !='Disable' ";
 	$Query = wewebQueryDB($coreLanguageSQL, $sql);
 	$RecordCount = wewebNumRowsDB($coreLanguageSQL, $Query);
 

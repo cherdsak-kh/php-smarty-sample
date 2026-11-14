@@ -81,7 +81,7 @@ if (!isset($_SESSION[$valSiteManage . 'core_session_multilang'])) {
 }
 
 ## Core Cketitor #############################################
-$_SESSION["myBackOfficeSession"] = "/wwp-php-sample/ckeditor/upload/files/id" . $_SESSION[$valSiteManage . 'core_session_id'];
+$_SESSION["myBackOfficeSession"] = "/php-smarty-sample/ckeditor/upload/files/id" . $_SESSION[$valSiteManage . 'core_session_id'];
 $valFolderCkEditor = "/ckeditor/upload/files/id" . $_SESSION[$valSiteManage . 'core_session_id'];
 if (!empty($_SESSION[$valSiteManage . "core_session_id"])) {
     if ($_SESSION[$valSiteManage . "core_session_id"] >= 1) {
@@ -106,6 +106,7 @@ function wewebConnect($valCoreDB, $valHost, $valUser, $valPass, $valDb) {
     $dbConnect->Execute("SET character_set_results=utf8");
     $dbConnect->Execute("SET collation_connection=utf8_general_ci");
     $dbConnect->Execute("SET NAMES 'utf8'");
+    $dbConnect->Execute("SET sql_mode = ''");
 
     //$dbConnect->SetFetchMode(ADODB_FETCH_ASSOC);
     $dbConnect->cacheSecs = 3600 * 12;

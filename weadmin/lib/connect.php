@@ -1,4 +1,4 @@
-<?
+<?php
 include 'adodb5/adodb.inc.php';
 
 $dbConnect = NewADOConnection($coreLanguageSQL);

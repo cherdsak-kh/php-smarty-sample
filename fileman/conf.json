@@ -1,5 +1,5 @@
 {
-    "FILES_ROOT": "/wwp-php-sample/ckeditor/upload/files",
+    "FILES_ROOT": "/php-smarty-sample/ckeditor/upload/files",
     "RETURN_URL_PREFIX": "",
     "SESSION_PATH_KEY": "myBackOfficeSession",
     "THUMBS_VIEW_WIDTH": "140",

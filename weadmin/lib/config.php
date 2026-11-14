@@ -14,7 +14,7 @@ if($data_set_show_error==0){
 }
 
 ## Core Folder Local  ######################################################
-$core_pathname_folderlocal = "/wwp-php-sample";
+$core_pathname_folderlocal = "/php-smarty-sample";
 
 ## Core Upload  ######################################################
 $core_pathname_upload = "../../upload";
@@ -68,20 +68,24 @@ $core_icon_maxsize = 75;
 $core_icon_librarypath = "../img/iconmenu";
 
 ## Database Connect #################################################
-if ($_SERVER['HTTP_HOST'] == 'localhost:8080' || $_SERVER['HTTP_HOST'] == 'localhost') {
+$hostClean = isset($_SERVER['HTTP_HOST']) ? explode(':', $_SERVER['HTTP_HOST'])[0] : 'localhost';
+if ($hostClean == 'localhost' || str_ends_with($hostClean, '.localhost') || $hostClean == '127.0.0.1') {
     $_CORE_ENV = "DEV";
-}elseif($_SERVER['HTTP_HOST'] == 'wewebplus.com'){
+}elseif($hostClean == 'wewebplus.com'){
     $_CORE_ENV = "PROD";
 }else{
     $_CORE_ENV = "STAGING";
+}
+if (!isset($_ENV[$_CORE_ENV])) {
+    $_CORE_ENV = "DEV";
 }
 
 $_ENV = array(
     "DEV" => array(
         "hostname" => "DB",
-        "username" => "root",
-        "password" => "MYSQL_ROOT_PASSWORD",
-        "name" => "2024_web_template",
+        "username" => "mysql_user",
+        "password" => "mysql_pws1598753",
+        "name" => "php_smarty_sample",
     ),
 );
 
