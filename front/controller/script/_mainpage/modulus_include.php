@@ -9,6 +9,18 @@ $config['tgp']['masterkey'] = "tg";
 
 $config['cmf']['db']['main'] = "md_cmf";
 
+$config['about']['db'] = "md_ab";
+$config['aboutl']['db'] = "md_abl";
+$config['aboutf']['db'] = "md_abf";
+$config['about']['masterkey'] = "ab";
+
+$config['news']['db'] = "md_cms";
+$config['newsl']['db'] = "md_cmsl";
+$config['newsg']['db'] = "md_cmg";
+$config['newsgl']['db'] = "md_cmgl";
+$config['newsa']['db'] = "md_cma";
+$config['news']['masterkey'] = "nw";
+
 $mainPage = new mainPage();
 
 class mainPage
@@ -44,7 +56,7 @@ class mainPage
       " . $config['settingl']['db'] . " ON " . $config['settingl']['db'] . "_containid = " . $config['setting']['db'] . "_id
       WHERE
       " . $config['setting']['db'] . "." . $config['setting']['db'] . "_masterkey = '" . $config['setting']['masterkey'] . "' 
-      AND " . $config['setting']['db'] . "." . $config['setting']['db'] . "_language = '" . $language . "' 
+      AND " . $config['settingl']['db'] . "." . $config['settingl']['db'] . "_language = '" . $language . "' 
       ";
         $result = $db->execute($sql);
         return $result;

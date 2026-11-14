@@ -37,4 +37,27 @@ class HomePage {
         $result = $db->execute($sql);
         return $result;
     }
+
+    function callLatestNews($masterkey = 'nw', $limit = 3) {
+        global $config, $db, $url;
+        $language = $url->pagelang[4];
+
+        $sql = "SELECT
+            " . $config['news']['db'] . "." . $config['news']['db'] . "_id as id,
+            " . $config['news']['db'] . "." . $config['news']['db'] . "_credate as credate,
+            " . $config['news']['db'] . "." . $config['news']['db'] . "_view as view,
+            " . $config['newsl']['db'] . "." . $config['newsl']['db'] . "_subject as subject,
+            " . $config['newsl']['db'] . "." . $config['newsl']['db'] . "_title as title,
+            " . $config['newsl']['db'] . "." . $config['newsl']['db'] . "_pic as pic
+            FROM " . $config['news']['db'] . "
+            INNER JOIN " . $config['newsl']['db'] . " ON " . $config['newsl']['db'] . "_cid = " . $config['news']['db'] . "_id
+            WHERE
+            " . $config['news']['db'] . "." . $config['news']['db'] . "_masterkey = '" . $masterkey . "' AND
+            " . $config['newsl']['db'] . "." . $config['newsl']['db'] . "_language = '" . $language . "' AND
+            " . $config['news']['db'] . "." . $config['news']['db'] . "_status != 'Disable'
+            ORDER BY " . $config['news']['db'] . "." . $config['news']['db'] . "_order DESC
+            LIMIT " . intval($limit);
+
+        return $db->execute($sql);
+    }
 }

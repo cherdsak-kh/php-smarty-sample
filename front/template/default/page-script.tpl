@@ -3,6 +3,7 @@
 <html lang="{$langon}">
 <head>
 {include file="{$incfile.metatag}" title=title}
+{include file="{$incfile.loadstyle}" title=title}
 </head>
 <body>
 <div class="global-container">

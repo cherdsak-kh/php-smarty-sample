@@ -21,14 +21,17 @@ class url
 
         $this->rootDir = str_replace("\\", '/', dirname(__FILE__)); # _DIR
         $this->rootDocument = str_replace('//', '/', str_replace('//', '/', $_SERVER['DOCUMENT_ROOT'] . "/" . $pathFirst));
-        $this->url = end(explode($pathFirst, str_replace('//', '/', $_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'])));
+        $urlExplode = explode($pathFirst, str_replace('//', '/', $_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI']));
+        $this->url = end($urlExplode);
 
-        define("_URL", _http . "://" . str_replace('//', '/', $_SERVER['HTTP_HOST'] . "/" . $this->onFolder) . "/");
+        if (!defined('_URL')) {
+            define("_URL", _http . "://" . str_replace('//', '/', $_SERVER['HTTP_HOST'] . "/" . $this->onFolder) . "/");
+        }
 
         $urlall = explode("?", $this->url);
         $segment = cleanArray(explode('/', $urlall[0]));
-        $this->segment = $segment;
-        $this->onModulus = $segment['0'] ? $segment['0'] : $url_show_default;
+        $this->segment = is_array($segment) ? $segment : array();
+        $this->onModulus = !empty($this->segment[0]) ? $this->segment[0] : $url_show_default;
         if (!empty($url_show_lang)) {
             if (isset($lang_set[$this->segment[0]])) {
                 $this->pagelang = $lang_set[$this->segment[0]];
@@ -40,7 +43,11 @@ class url
                 exit();
             }
         } else {
-            if (!empty($_SESSION['pagelang'])) {
+            if (!empty($this->segment[0]) && isset($lang_set[$this->segment[0]])) {
+                $this->pagelang = $lang_set[$this->segment[0]];
+                $_SESSION['pagelang'] = $this->segment[0];
+                array_splice($this->segment, 0, 1);
+            } elseif (!empty($_SESSION['pagelang']) && isset($lang_set[$_SESSION['pagelang']])) {
                 $this->pagelang = $lang_set[$_SESSION['pagelang']];
             } else {
                 $this->pagelang = $lang_set[$lang_default];
@@ -76,8 +83,10 @@ class url
 
     public function onRoot()
     {
-        $onDir = end(explode("/", _DIR));
-        $onBase = end(explode("/", $_SERVER['DOCUMENT_ROOT']));
+        $dirParts = explode("/", _DIR);
+        $onDir = end($dirParts);
+        $docParts = explode("/", $_SERVER['DOCUMENT_ROOT']);
+        $onBase = end($docParts);
 
         if ($onDir != $onBase) {
             $this->onFolder = $onDir;

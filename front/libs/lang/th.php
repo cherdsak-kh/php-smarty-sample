@@ -8,6 +8,11 @@ $lang['menu']['event'] = "กิจกรรมทำความดี";
 $lang['menu']['product'] = "สินค้า";
 $lang['menu']['faq'] = "คำถามที่พบบ่อย";
 $lang['menu']['about'] = "เกี่ยวกับเรา";
+$lang['menu']['news'] = "ข่าวประชาสัมพันธ์";
+$lang['menu']['contact'] = "ติดต่อเรา";
+$lang['menu']['intro'] = "หน้าแรก";
+$lang['menu']['terms'] = "ข้อกำหนดและเงื่อนไข";
+$lang['menu']['policy'] = "นโยบายความเป็นส่วนตัว";
 $lang['menu']['favorite'] = "สิ่งที่อยากได้";
 $lang['menu']['blog'] = "Blog";
 $lang['menu']['noti'] = "แจ้งเตือน ";
@@ -52,6 +57,18 @@ $lang['product']['title'] = "สินค้าของเทราโอะซ
 
 $lang['gallery']['number'] = "แกลอรี่ที่";
 $lang['gallery']['zoom'] = "ซูม";
+
+$lang['contact']['fname'] = "ชื่อ";
+$lang['contact']['lname'] = "นามสกุล";
+$lang['contact']['company_name'] = "ชื่อบริษัท/องค์กร";
+$lang['contact']['email'] = "อีเมล";
+$lang['contact']['phone'] = "เบอร์โทรศัพท์";
+$lang['contact']['group'] = "กลุ่ม/ฝ่าย";
+$lang['contact']['subject'] = "หัวข้อ";
+$lang['contact']['detail'] = "ข้อความ";
+$lang['contact']['thank_you'] = "ขอบคุณ";
+$lang['contact']['thank_you_desc'] = "ขอบคุณสำหรับการติดต่อเรา<br/>เราจะติดต่อกลับโดยเร็วที่สุด";
+$lang['contact']['btn'] = "กลับสู่หน้าหลัก";
 
 $lang['pagination']['total'] = "ทั้งหมด";
 $lang['pagination']['per'] = "หน้า";

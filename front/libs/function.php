@@ -28,6 +28,10 @@ function print_pre($expression, $return = false, $wrap = false)
 
 function cleanArray($arr)
 {
+    $r = array();
+    if (!is_array($arr)) {
+        return $r;
+    }
     $size = sizeof($arr);
     for ($i = 0; $i < $size; $i++) {
         $thum = trim($arr[$i]);
@@ -217,7 +221,11 @@ function encodeStr($variable)
     }
     $variable = strrev($temp);
     $variable = base64_encode($variable);
-    $variable = utf8_encode($variable);
+    if (function_exists('mb_convert_encoding')) {
+        $variable = mb_convert_encoding($variable, 'UTF-8', 'ISO-8859-1');
+    } else {
+        $variable = @utf8_encode($variable);
+    }
     $variable = urlencode($variable);
     $variable = str_rot13($variable);
     $variable = str_replace("%", "WewEb", $variable);
@@ -231,7 +239,11 @@ function decodeStr($enVariable)
     $enVariable = str_replace("WewEb", "%", $enVariable);
     $enVariable = str_rot13($enVariable);
     $enVariable = urldecode($enVariable);
-    $enVariable = utf8_decode($enVariable);
+    if (function_exists('mb_convert_encoding')) {
+        $enVariable = mb_convert_encoding($enVariable, 'ISO-8859-1', 'UTF-8');
+    } else {
+        $enVariable = @utf8_decode($enVariable);
+    }
     $enVariable = base64_decode($enVariable);
     $enVariable = strrev($enVariable);
     $current = 0;
@@ -825,9 +837,11 @@ function pagepagination($uri, $limit = null)
     $pageOn['page'] = $pagemain[0];
     $listparameter = array();
 
-    foreach ($uri->uri as $key => $value) {
-        if ($key != "page") {
-            $listparameter[] = $key . "=" . $value;
+    if (!empty($uri->uri) && is_array($uri->uri)) {
+        foreach ($uri->uri as $key => $value) {
+            if ($key != "page") {
+                $listparameter[] = $key . "=" . $value;
+            }
         }
     }
 
@@ -1973,6 +1987,14 @@ function getEndDayOfMonth($myDate)
     } else {
         return 0;
     }
+}
+
+function DateFormat($DateTime, $format = 'd/m/Y')
+{
+    if (empty($DateTime) || $DateTime == '0000-00-00 00:00:00' || $DateTime == '0000-00-00') {
+        return '';
+    }
+    return date($format, strtotime($DateTime));
 }
 
 //#################################################

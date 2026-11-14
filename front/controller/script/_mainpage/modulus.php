@@ -2,55 +2,46 @@
 $infoSetting = $mainPage->infoSetting;
 
 #function assign seo & title page
-function Seo($title = '', $desc = '', $keyword = '')
+function Seo($title = '', $desc = '', $keyword = '', $pic = '')
 {
     global $smarty, $infoSetting;
     $list = array();
-    if (!empty($title)) {
-        if (!empty($infoSetting->fields['metatitle'])) {
-            $list_last = $infoSetting->fields['metatitle'];
-        } elseif (!empty($infoSetting->fields['subject'])) {
-            $list_last = $infoSetting->fields['subject'];
-        } else {
-            $list_last = 'Template Website';
-        }
+    $metatitle = (!empty($infoSetting) && !empty($infoSetting->fields['metatitle'])) ? $infoSetting->fields['metatitle'] : '';
+    $subject = (!empty($infoSetting) && !empty($infoSetting->fields['subject'])) ? $infoSetting->fields['subject'] : '';
+    $defaultTitle = !empty($metatitle) ? $metatitle : (!empty($subject) ? $subject : 'Template Website');
 
-        $list['title'] = trim($title) . " - " . $list_last;
+    if (!empty($title)) {
+        $list['title'] = trim($title) . " - " . $defaultTitle;
     } else {
-        if (!empty($infoSetting->fields['metatitle'])) {
-            $list['title'] = $infoSetting->fields['metatitle'];
-        } elseif (!empty($infoSetting->fields['subject'])) {
-            $list['title'] = $infoSetting->fields['subject'];
-        } else {
-            $list['title'] = 'Template Website';
-        }
+        $list['title'] = $defaultTitle;
     }
 
     if (!empty($desc)) {
         $list['desc'] = trim($desc);
     } else {
-        $list['desc'] = $infoSetting->fields['description'];
+        $list['desc'] = (!empty($infoSetting) && !empty($infoSetting->fields['description'])) ? $infoSetting->fields['description'] : '';
     }
 
     if (!empty($keyword)) {
         $list['keyword'] = trim($keyword);
     } else {
-        $list['keyword'] = $infoSetting->fields['keywords'];
+        $list['keyword'] = (!empty($infoSetting) && !empty($infoSetting->fields['keywords'])) ? $infoSetting->fields['keywords'] : '';
     }
     $smarty->assign("seo", $list);
 }
 
 #### SETTING
 $settingWeb = array();
-$settingWeb['id'] = $infoSetting->fields['id'];
-$settingWeb['masterkey'] = $infoSetting->fields['masterkey'];
-$settingWeb['subject'] = $infoSetting->fields['subject'];
-$settingWeb['subjectoffice'] = $infoSetting->fields['subjectoffice'];
-$settingWeb['description'] = $infoSetting->fields['description'];
-$settingWeb['keywords'] = $infoSetting->fields['keywords'];
-$settingWeb['metatitle'] = $infoSetting->fields['metatitle'];
-$settingWeb['contact'] = unserialize($infoSetting->fields['config']);
-$settingWeb['social'] = unserialize($infoSetting->fields['social']);
-$settingWeb['addresspic'] = $infoSetting->fields['addresspic'];
-// print_pre($settingWeb);
+if (!empty($infoSetting) && !empty($infoSetting->fields)) {
+    $settingWeb['id'] = isset($infoSetting->fields['id']) ? $infoSetting->fields['id'] : '';
+    $settingWeb['masterkey'] = isset($infoSetting->fields['masterkey']) ? $infoSetting->fields['masterkey'] : '';
+    $settingWeb['subject'] = isset($infoSetting->fields['subject']) ? $infoSetting->fields['subject'] : '';
+    $settingWeb['subjectoffice'] = isset($infoSetting->fields['subjectoffice']) ? $infoSetting->fields['subjectoffice'] : '';
+    $settingWeb['description'] = isset($infoSetting->fields['description']) ? $infoSetting->fields['description'] : '';
+    $settingWeb['keywords'] = isset($infoSetting->fields['keywords']) ? $infoSetting->fields['keywords'] : '';
+    $settingWeb['metatitle'] = isset($infoSetting->fields['metatitle']) ? $infoSetting->fields['metatitle'] : '';
+    $settingWeb['contact'] = !empty($infoSetting->fields['config']) ? @unserialize($infoSetting->fields['config']) : array();
+    $settingWeb['social'] = !empty($infoSetting->fields['social']) ? @unserialize($infoSetting->fields['social']) : array();
+    $settingWeb['addresspic'] = isset($infoSetting->fields['addresspic']) ? $infoSetting->fields['addresspic'] : '';
+}
 $smarty->assign("settingWeb", $settingWeb);

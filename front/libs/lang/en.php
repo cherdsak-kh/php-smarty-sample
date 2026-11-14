@@ -6,6 +6,9 @@ $lang['menu']['solution'] = "SOLUTION";
 $lang['menu']['service'] = "SERVICE";
 $lang['menu']['news'] = "NEWS";
 $lang['menu']['contact'] = "CONTACT";
+$lang['menu']['intro'] = "INTRO";
+$lang['menu']['terms'] = "TERMS & CONDITIONS";
+$lang['menu']['policy'] = "PRIVACY POLICY";
 
 $lang['system']['readmore'] = "READ MORE";
 $lang['system']['scrolldown'] = "Scroll Down";

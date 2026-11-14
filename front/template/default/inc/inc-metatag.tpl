@@ -9,7 +9,7 @@
 <meta name="HandheldFriendly" content="true">
 <meta name="format-detection" content="telephone=no">
 
-{assign  var=valLinkImgSeo value="{$base}{$template}/assets/img/static/brand.png"}
+{assign  var=valLinkImgSeo value="{$template}/assets/img/static/brand.png"}
 <meta property="og:type" content="website">
 <meta property="og:url" content="">
 <meta property="og:title" content="{$valSeoTitle|default:$settingWeb.metatitle}">
