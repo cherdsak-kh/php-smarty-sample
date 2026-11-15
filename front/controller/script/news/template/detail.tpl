@@ -2,7 +2,7 @@
     {if !empty($callNewsDetail)}
         <article class="news-detail-wrapper">
             <div class="news-detail-header">
-                <a href="{$base}{$ul}/news" class="btn-back"><i class="fas fa-arrow-left"></i> {$lang.news.back}</a>
+                <a href="{$ul}/news" class="btn-back"><i class="fas fa-arrow-left"></i> {$lang.news.back}</a>
                 <h1 class="detail-title">{$callNewsDetail.subject}</h1>
                 <div class="detail-meta">
                     <span class="meta-date"><i class="far fa-calendar-alt"></i> {$callNewsDetail.credate|DateFormat}</span>
@@ -66,7 +66,7 @@
     {else}
         <div class="no-data">
             <p>{$lang.datanotfound}</p>
-            <a href="{$base}{$ul}/news" class="btn-back">{$lang.news.back}</a>
+            <a href="{$ul}/news" class="btn-back">{$lang.news.back}</a>
         </div>
     {/if}
 </div>

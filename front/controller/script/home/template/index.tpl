@@ -26,8 +26,8 @@
             <p class="hero-desc">{$settingWeb.description}</p>
         {/if}
         <div class="hero-actions">
-            <a href="{$base}{$ul}/about" class="btn-readmore">{$lang.menu.about} &rarr;</a>
-            <a href="{$base}{$ul}/contact" class="btn-readmore" style="margin-left: 1rem;">{$lang.menu.contact} &rarr;</a>
+            <a href="{$ul}/about" class="btn-readmore">{$lang.menu.about} &rarr;</a>
+            <a href="{$ul}/contact" class="btn-readmore" style="margin-left: 1rem;">{$lang.menu.contact} &rarr;</a>
         </div>
     </div>
 
@@ -35,7 +35,7 @@
     <div class="home-news-section" style="margin-top: 2.5rem;">
         <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
             <h2>{$lang.menu.news}</h2>
-            <a href="{$base}{$ul}/news" class="btn-readmore">{$lang.system.viewsall} &rarr;</a>
+            <a href="{$ul}/news" class="btn-readmore">{$lang.system.viewsall} &rarr;</a>
         </div>
         {if !empty($callLatestNews)}
             <div class="news-grid">
@@ -51,12 +51,12 @@
                         <div class="news-info">
                             <span class="news-date"><i class="far fa-calendar-alt"></i> {$valNews.credate|DateFormat}</span>
                             <h3 class="news-title">
-                                <a href="{$base}{$ul}/news/detail/{$valNews.id}">{$valNews.subject}</a>
+                                <a href="{$ul}/news/detail/{$valNews.id}">{$valNews.subject}</a>
                             </h3>
                             {if !empty($valNews.title)}
                                 <p class="news-desc">{$valNews.title}</p>
                             {/if}
-                            <a href="{$base}{$ul}/news/detail/{$valNews.id}" class="btn-readmore">{$lang.system.readmore} &rarr;</a>
+                            <a href="{$ul}/news/detail/{$valNews.id}" class="btn-readmore">{$lang.system.readmore} &rarr;</a>
                         </div>
                     </div>
                 {/foreach}

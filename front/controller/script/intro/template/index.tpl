@@ -5,7 +5,7 @@
             <p class="intro-desc">{$settingWeb.description}</p>
         {/if}
         <div class="intro-action">
-            <a href="{$base}{$ul}/home" class="btn-enter">
+            <a href="{$ul}/home" class="btn-enter">
                 {$lang.intro.enter} <i class="fas fa-arrow-right"></i>
             </a>
         </div>

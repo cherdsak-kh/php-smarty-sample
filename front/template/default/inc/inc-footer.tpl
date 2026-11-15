@@ -12,11 +12,11 @@
         <div class="footer-col links-col">
             <h4 class="footer-subtitle">{$lang.system.menu}</h4>
             <ul class="footer-menu">
-                <li><a href="{$base}{$ul}/home">{$lang.menu.home}</a></li>
-                <li><a href="{$base}{$ul}/about">{$lang.menu.about}</a></li>
-                <li><a href="{$base}{$ul}/news">{$lang.menu.news}</a></li>
-                <li><a href="{$base}{$ul}/contact">{$lang.menu.contact}</a></li>
-                <li><a href="{$base}{$ul}/terms">{$lang.menu.terms}</a></li>
+                <li><a href="{$ul}/home">{$lang.menu.home}</a></li>
+                <li><a href="{$ul}/about">{$lang.menu.about}</a></li>
+                <li><a href="{$ul}/news">{$lang.menu.news}</a></li>
+                <li><a href="{$ul}/contact">{$lang.menu.contact}</a></li>
+                <li><a href="{$ul}/terms">{$lang.menu.terms}</a></li>
             </ul>
         </div>
         <div class="footer-col contact-col">
@@ -49,7 +49,7 @@
         <div class="footer-bottom-container">
             <p class="copyright">&copy; {date("Y")} {$settingWeb.subjectoffice|default:$settingWeb.subject|default:'PHP Smarty Sample'}. All rights reserved.</p>
             <div class="footer-bottom-links">
-                <a href="{$base}{$ul}/terms">{$lang.menu.terms}</a>
+                <a href="{$ul}/terms">{$lang.menu.terms}</a>
             </div>
         </div>
     </div>

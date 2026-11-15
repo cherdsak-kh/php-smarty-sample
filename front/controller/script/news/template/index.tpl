@@ -8,11 +8,11 @@
         <div class="category-tabs">
             <ul class="nav-tabs">
                 <li class="{if empty($currentGid)}active{/if}">
-                    <a href="{$base}{$ul}/news">{$lang.news.all}</a>
+                    <a href="{$ul}/news">{$lang.news.all}</a>
                 </li>
                 {foreach $callGroup as $keyGroup => $valGroup}
                     <li class="{if $currentGid eq $valGroup.id}active{/if}">
-                        <a href="{$base}{$ul}/news?gid={$valGroup.id}">{$valGroup.subject}</a>
+                        <a href="{$ul}/news?gid={$valGroup.id}">{$valGroup.subject}</a>
                     </li>
                 {/foreach}
             </ul>
@@ -39,13 +39,13 @@
                                 {if $valNews.type eq 'url'}
                                     <a href="{$valNews.url}" target="_blank">{$valNews.subject}</a>
                                 {else}
-                                    <a href="{$base}{$ul}/news/detail/{$valNews.id}">{$valNews.subject}</a>
+                                    <a href="{$ul}/news/detail/{$valNews.id}">{$valNews.subject}</a>
                                 {/if}
                             </h3>
                             {if !empty($valNews.title)}
                                 <p class="news-desc">{$valNews.title}</p>
                             {/if}
-                            <a href="{$base}{$ul}/news/detail/{$valNews.id}" class="btn-readmore">{$lang.system.readmore} &rarr;</a>
+                            <a href="{$ul}/news/detail/{$valNews.id}" class="btn-readmore">{$lang.system.readmore} &rarr;</a>
                         </div>
                     </div>
                 {/foreach}

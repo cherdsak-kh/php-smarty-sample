@@ -70,7 +70,7 @@
                     <p>{$lang.contact.thank_you_desc}</p>
                 </div>
             {else}
-                <form action="{$base}{$ul}/contact" method="post" class="contact-form">
+                <form action="{$ul}/contact" method="post" class="contact-form">
                     <input type="hidden" name="action" value="send_contact">
                     <div class="form-row">
                         <div class="form-group col-half">
